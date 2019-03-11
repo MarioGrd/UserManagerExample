@@ -7,7 +7,7 @@ interface EmailProvider {
 }
 
 @Service
-class MockEmailProvider : EmailProvider {
+class EmailProviderMock : EmailProvider {
     override fun sendEmail(mail: String, content: String) {
         System.out.println("Sending mail to '$mail'")
     }

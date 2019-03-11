@@ -3,6 +3,8 @@ package auth
 import auth.cqrs.core.PostRequestLogging
 import auth.cqrs.core.PreRequestLogging
 import auth.cqrs.core.PreRequestValidation
+import auth.infrastructure.core.EmailProvider
+import auth.infrastructure.core.EmailProviderMock
 import auth.infrastructure.core.PasswordProvider
 import auth.infrastructure.core.PasswordProviderMock
 import com.grd.request.*
@@ -31,16 +33,18 @@ class UserManagerApplication : ApplicationContextAware {
     }
 
     @Bean
-    fun logger() : Logger {
-        return Logger.getGlobal()
-    }
+    fun logger()= Logger.getGlobal()
 
     @Bean
     fun passwordProvider() = PasswordProviderMock() as PasswordProvider
 
     @Bean
+    fun emailProvider() = EmailProviderMock() as EmailProvider
+
+    @Bean
     @SuppressWarnings("unchecked")
     fun requestBus(context: ApplicationContext): RequestBus {
+
         return SimpleRequestBus { name -> context.getBean(name) as RequestHandler<Request<Any>, Any> }
                 .setPreRequestHandler(context.getBean(PreRequestLogging::class.java) as PreRequestHandler<Request<*>, *>)
                 .setPreRequestHandler(context.getBean(PreRequestValidation::class.java) as PreRequestHandler<Request<*>, *>)

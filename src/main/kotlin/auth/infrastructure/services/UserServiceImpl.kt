@@ -16,7 +16,9 @@ interface UserService {
 }
 
 @Service
-class UserServiceImpl(@Autowired private val userRepository: UserRepository) : UserService {
+class UserServiceImpl(
+        @Autowired private val userRepository: UserRepository)
+    : UserService {
 
     override fun findByIdSafe(id: UUID): User =
         this.userRepository.findById(id).orElseThrow{EntityNotFoundException("User not found.")}

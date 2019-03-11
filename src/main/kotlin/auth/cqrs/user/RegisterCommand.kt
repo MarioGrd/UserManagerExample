@@ -2,6 +2,7 @@ package auth.cqrs.user
 
 import auth.domain.role.RoleEnum
 import auth.domain.user.User
+import auth.infrastructure.core.EmailProvider
 import auth.infrastructure.core.PasswordProvider
 import auth.infrastructure.repositories.UserRepository
 import auth.infrastructure.services.RoleService
@@ -35,6 +36,7 @@ data class RegisterCommand(
 data class RegisterCommandHandler(
         @Autowired private val userService: UserService,
         @Autowired private val roleService: RoleService,
+        @Autowired private val emailProvider: EmailProvider,
         @Autowired private val passwordProvider: PasswordProvider)
     : RequestHandler<RegisterCommand, Unit> {
 
@@ -45,6 +47,7 @@ data class RegisterCommandHandler(
 
         if (!user.isPresent) {
             this.userService.save(User(request.firstName, request.lastName, passwordProvider.hashPassword(request.password), request.email, role))
+            this.emailProvider.sendEmail(request.email, "Mock email.")
         }
     }
 }
