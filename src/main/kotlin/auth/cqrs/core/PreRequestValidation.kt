@@ -38,7 +38,6 @@ data class RequestValidationException(
         val source: String,
         val code: HttpStatus,
         val errors: Map<String, List<String>>,
-        val at: Date = Date()) : Exception() {
-}
+        val at: Date = Date()) : Exception()
 
 data class BasicValidationException(val msg: String, val code: HttpStatus = HttpStatus.BAD_REQUEST, val at: Date = Date()) : Exception()

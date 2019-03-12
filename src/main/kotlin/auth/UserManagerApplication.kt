@@ -42,7 +42,7 @@ class UserManagerApplication : ApplicationContextAware {
     fun emailProvider() = EmailProviderMock() as EmailProvider
 
     @Bean
-    @SuppressWarnings("unchecked")
+    @Suppress("UNCHECKED_CAST")
     fun requestBus(context: ApplicationContext): RequestBus {
 
         return SimpleRequestBus { name -> context.getBean(name) as RequestHandler<Request<Any>, Any> }

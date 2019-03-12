@@ -3,6 +3,7 @@ package auth.cqrs.user
 import auth.cqrs.core.BasicValidationException
 import auth.cqrs.core.RequestValidationException
 import auth.infrastructure.repositories.UserRepository
+import auth.infrastructure.services.UserService
 import auth.infrastructure.services.UserServiceImpl
 import com.grd.request.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,14 +11,17 @@ import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 import java.util.*
 import javax.validation.ValidationException
+import javax.validation.constraints.NotNull
 
 @HasRequestHandler(ConfirmEmailCommandHandler::class)
-data class ConfirmEmailCommand(val token: String) : Request<Unit>
+data class ConfirmEmailCommand(
+        @field: NotNull(message = "Token is required.")
+        val token: String) : Request<Unit>
 
 @Component
 @Scope("prototype")
 data class ConfirmEmailCommandHandler(
-        @Autowired private val userService: UserServiceImpl)
+        @Autowired private val userService: UserService)
     : RequestHandler<ConfirmEmailCommand, Unit> {
 
     override fun handle(request: ConfirmEmailCommand) {

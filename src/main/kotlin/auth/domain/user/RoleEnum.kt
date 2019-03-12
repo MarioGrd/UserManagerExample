@@ -1,5 +1,4 @@
-package auth.domain.role
-
+package auth.domain.user
 
 enum class RoleEnum {
     User,

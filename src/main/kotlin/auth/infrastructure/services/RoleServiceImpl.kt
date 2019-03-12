@@ -1,6 +1,6 @@
 package auth.infrastructure.services
 
-import auth.domain.role.Role
+import auth.domain.user.Role
 import auth.infrastructure.repositories.RoleRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

@@ -1,7 +1,7 @@
 package auth.domain.user
 
 import auth.domain.core.DomainValidationData
-import auth.domain.core.validateDomainModel
+import auth.domain.core.DomainValidationHelper
 import java.util.Date
 import javax.persistence.Column
 import javax.persistence.Embeddable
@@ -32,6 +32,6 @@ data class Email internal constructor(
             errors.add(DomainValidationData("confirmation_token", "Confirmation token is required."))
         }
 
-        validateDomainModel<Email>(errors)
+        DomainValidationHelper.validateDomainModel<Email>(errors)
     }
 }

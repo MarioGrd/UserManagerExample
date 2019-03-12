@@ -1,16 +1,9 @@
 package auth.domain.user
 
-import auth.domain.role.Role
-import auth.domain.role.RoleEnum
 import auth.domain.core.DomainValidationData
-import auth.domain.core.DomainValidationException
-import auth.domain.core.validateDomainModel
-import org.hibernate.annotations.OnDelete
-import org.hibernate.annotations.OnDeleteAction
-import org.springframework.http.HttpStatus
+import auth.domain.core.DomainValidationHelper
 import java.util.*
 import javax.persistence.*
-import kotlin.math.absoluteValue
 
 @Entity
 @Table(name = "users")
@@ -57,14 +50,14 @@ constructor(
 
     fun removeFromRole(role: Role) {
         if (!this.roles.any { it.roleId == role.roleId }) {
-            validateDomainModel<User>(mutableListOf(DomainValidationData("role", "User doesn't have role '${role.name}'")))
+            DomainValidationHelper.validateDomainModel<User>(DomainValidationData("role", "User doesn't have role '${role.name}'"))
         }
         this.roles.remove(role)
     }
 
     fun addToRole(role: Role) {
         if (this.roles.any { it.roleId == role.roleId }) {
-            validateDomainModel<User>(mutableListOf(DomainValidationData("role", "User already has '${role.name}'")))
+            DomainValidationHelper.validateDomainModel<User>(DomainValidationData("role", "User already has '${role.name}'"))
         }
         this.roles.add(role)
     }
@@ -85,7 +78,7 @@ constructor(
             errors.add(DomainValidationData("password", "Password is required."))
         }
 
-        validateDomainModel<User>(errors)
+        DomainValidationHelper.validateDomainModel<User>(errors)
 
         this.name = Name(firstName, lastName)
         this.email = Email(mail, UUID.randomUUID().toString(), false, Date())

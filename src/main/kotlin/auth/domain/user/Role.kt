@@ -1,7 +1,7 @@
-package auth.domain.role
+package auth.domain.user
 
 import auth.domain.core.DomainValidationData
-import auth.domain.core.validateDomainModel
+import auth.domain.core.DomainValidationHelper
 import javax.persistence.*
 
 @Entity
@@ -23,6 +23,6 @@ constructor(
             errors.add(DomainValidationData("role_name", "Role name is required."))
         }
 
-        validateDomainModel<Role>(errors)
+        DomainValidationHelper.validateDomainModel<Role>(errors)
     }
 }

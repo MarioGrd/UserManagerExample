@@ -13,11 +13,11 @@ import javax.validation.constraints.NotBlank
 
 @HasRequestHandler(LoginCommandHandler::class)
 data class LoginCommand(
-        @NotBlank(message = "Email is required.")
-        @Email(message = "Not a valid email.")
+        @field: NotBlank(message = "Email is required.")
+        @field: Email(message = "Not a valid email.")
         val email: String,
 
-        @NotBlank(message = "Password is required.")
+        @field: NotBlank(message = "Password is required.")
         val password: String) : Request<Boolean>
 
 @Component

@@ -1,6 +1,5 @@
 package auth.cqrs.user
 
-import auth.domain.role.RoleEnum
 import auth.infrastructure.services.RoleService
 import auth.infrastructure.services.UserService
 import com.grd.request.HasRequestHandler
@@ -10,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 import java.util.*
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 
 @HasRequestHandler(handler = AddUserToRoleCommandHandler::class)
-data class AddUserToRoleCommand(val userId: UUID, val roleId: Int) : Request<Unit>
+data class AddUserToRoleCommand(
+        val userId: UUID,
+        val roleId: Int): Request<Unit>
 
 @Component
 @Scope("prototype")

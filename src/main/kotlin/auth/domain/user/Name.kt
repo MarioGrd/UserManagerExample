@@ -1,7 +1,7 @@
 package auth.domain.user
 
 import auth.domain.core.DomainValidationData
-import auth.domain.core.validateDomainModel
+import auth.domain.core.DomainValidationHelper
 import javax.persistence.Column
 import javax.persistence.Embeddable
 
@@ -26,6 +26,6 @@ data class Name constructor(
             errors.add(DomainValidationData("last_name", "Last name is required."))
         }
 
-        validateDomainModel<Name>(errors)
+        DomainValidationHelper.validateDomainModel<Name>(errors)
     }
 }

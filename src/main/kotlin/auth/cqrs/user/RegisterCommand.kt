@@ -1,10 +1,9 @@
 package auth.cqrs.user
 
-import auth.domain.role.RoleEnum
+import auth.domain.user.RoleEnum
 import auth.domain.user.User
 import auth.infrastructure.core.EmailProvider
 import auth.infrastructure.core.PasswordProvider
-import auth.infrastructure.repositories.UserRepository
 import auth.infrastructure.services.RoleService
 import auth.infrastructure.services.UserService
 import com.grd.request.*
@@ -13,12 +12,10 @@ import org.springframework.stereotype.Component
 import org.springframework.context.annotation.Scope
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotEmpty
 
 @HasRequestHandler( handler = RegisterCommandHandler::class)
 data class RegisterCommand(
-        @field: NotEmpty (message = "First name is required.")
-        @field: NotBlank (message = "First name is blank.")
+        @field: NotBlank (message = "First name is required.")
         val firstName: String,
 
         @field: NotBlank (message = "Last name is required.")
