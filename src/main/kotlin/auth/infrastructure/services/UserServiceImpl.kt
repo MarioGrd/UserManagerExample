@@ -33,6 +33,6 @@ class UserServiceImpl(
         this.userRepository.findByEmailConfirmationToken(emailConfirmationToken).orElseThrow{EntityNotFoundException("User not found.")}
 
     override fun save(user: User) {
-        this.userRepository.save(user)
+            this.userRepository.save(user)
     }
 }

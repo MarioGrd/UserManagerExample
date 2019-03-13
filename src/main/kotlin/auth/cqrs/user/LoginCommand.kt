@@ -1,10 +1,8 @@
 package auth.cqrs.user
 
 import auth.infrastructure.core.PasswordProvider
-import auth.infrastructure.repositories.UserRepository
 import auth.infrastructure.services.UserService
-import auth.infrastructure.services.UserServiceImpl
-import com.grd.request.*
+import request.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component

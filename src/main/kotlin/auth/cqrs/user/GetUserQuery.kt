@@ -1,14 +1,13 @@
 package auth.cqrs.user
 
 import auth.infrastructure.services.UserService
-import com.grd.request.HasRequestHandler
-import com.grd.request.Request
-import com.grd.request.RequestHandler
+import request.HasRequestHandler
+import request.Request
+import request.RequestHandler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
 import java.util.*
-import javax.validation.constraints.NotBlank
 
 data class UserResponse(
         val id: UUID,

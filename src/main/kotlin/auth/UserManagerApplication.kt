@@ -7,7 +7,7 @@ import auth.infrastructure.core.EmailProvider
 import auth.infrastructure.core.EmailProviderMock
 import auth.infrastructure.core.PasswordProvider
 import auth.infrastructure.core.PasswordProviderMock
-import com.grd.request.*
+import request.*
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.ApplicationContext
